@@ -4,6 +4,7 @@ import ollama
 
 from src.llm_response import LLMResponse
 from src.types import Hyperparameters
+import logging
 
 
 class LLMGenerator:
@@ -11,7 +12,9 @@ class LLMGenerator:
         self.system_prompt = system_prompt
         self.model = model
 
+        logging.info(f"Loading model {model}")
         ollama.pull(self.model)
+        logging.info(f"Model {model} loaded")
 
     def generate(
         self,
@@ -28,5 +31,5 @@ class LLMGenerator:
         )
 
         return LLMResponse(
-            prompt=prompt, response=response["message"]["content"], model=self.model
+            prompt=prompt, response=response["message"]["content"], model=self.model,hyperparameters=hyperparameters
         )

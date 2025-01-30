@@ -13,13 +13,13 @@ class LLMResponseCollection:
                 {
                     "model": response.model,
                     "temperature": response.hyperparameters["temperature"]
-                    if response.hyperparameters
+                    if "temperature" in response.hyperparameters
                     else None,
                     "top_p": response.hyperparameters["top_p"]
-                    if response.hyperparameters
+                    if "top_p" in response.hyperparameters
                     else None,
                     "top_k": response.hyperparameters["top_k"]
-                    if response.hyperparameters
+                    if "top_k" in response.hyperparameters
                     else None,
                     "prompt": response.prompt,
                     "response": response.response,
